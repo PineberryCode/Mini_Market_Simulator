@@ -157,7 +157,7 @@
 /* ****************************************************************************************************** */
 	CREATE TABLE [dbo].[Measurement Quantities]
 	(
-		ID_Measurement				CHAR(5)					NOT NULL,
+		ID_Measurement				INT IDENTITY				NOT NULL,
 		Measurements				VARCHAR(5)				NOT NULL,
 
 		PRIMARY KEY				(ID_Measurement)
@@ -169,7 +169,7 @@
 	CREATE TABLE [dbo].[Quantities]
 	(
 		ID_Quantities				INT IDENTITY				NOT NULL,
-		FkID_Measurement			CHAR(5)					NOT NULL,
+		FkID_Measurement			INT					NOT NULL,
 		MeasurQuantities			INT					NOT NULL,
 
 		PRIMARY KEY				(ID_Quantities)					,
