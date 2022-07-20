@@ -22,59 +22,22 @@
 /* *************************************************************************************************************** */
 
 
-/* ****************************************************************************************************** */
-	CREATE TABLE [dbo].[Country]
-	(
-		Postal_COD				CHAR(5)					NOT NULL,
-		CountryName				VARCHAR(25)				NOT NULL,
-
-		PRIMARY KEY				(Postal_COD)
-	)
-/* ****************************************************************************************************** */
-
-
-/* ****************************************************************************************************** */
-	CREATE TABLE [dbo].[Region]
-	(
-		ID_City					CHAR(5)					NOT NULL,
-		City					VARCHAR(30)				NOT NULL,
-
-		PRIMARY KEY				(ID_City)
-	)
-/* ****************************************************************************************************** */
-
-
-/* ****************************************************************************************************** */
-	CREATE TABLE [dbo].[Country & Region]
-	(
-		ID_CountryAndRegion			CHAR(7)					NOT NULL,
-		FkPostal_COD				CHAR(5)					NOT NULL,
-		FkID_City				CHAR(5)					NOT NULL,
-		Distrit					VARCHAR(50)				NOT NULL,
-
-		PRIMARY KEY				(ID_CountryAndRegion)				,
-
-		CONSTRAINT fk_Country FOREIGN KEY (FkPostal_COD) REFERENCES [dbo].[Country] (Postal_COD),
-		CONSTRAINT fk_Region FOREIGN KEY (FkID_City) REFERENCES [dbo].[Region] (ID_City)
-	)
-/* ****************************************************************************************************** */
-
-
 /* ************************************************************************************************************************************** */
 	CREATE TABLE [dbo].[Customer]
 	(
 		IdentityCarnet				INT					NOT NULL,
-		FkID_CountryAndRegion			CHAR(7)					NOT NULL,
 		FirstName				VARCHAR(25)				NOT NULL,
 		SecondName				VARCHAR(25)				NOT NULL,
 		LastName				VARCHAR(25)				NOT NULL,
 		MothersLastName				VARCHAR(25)				NOT NULL,
 		Celphone				VARCHAR(20)				NOT NULL,
+		PostalCode				VARCHAR(10)				NOT NULL,
+		Country					VARCHAR(30)				NOT NULL,
+		Region					VARCHAR(30)				NOT NULL,
+		City					VARCHAR(30)				NOT NULL,
 		CustomerAddress				VARCHAR(80)				NOT NULL,
 
-		PRIMARY KEY				(IdentityCarnet)				,
-
-		CONSTRAINT fk_CountryRegion FOREIGN KEY (FkID_CountryAndRegion) REFERENCES [dbo].[Country & Region] (ID_CountryAndRegion)
+		PRIMARY KEY				(IdentityCarnet)				
 	)
 /* ************************************************************************************************************************************** */
 
@@ -95,7 +58,6 @@
 	CREATE TABLE [dbo].[Employee]
 	(
 		ID_Employee				CHAR(5)					NOT NULL,
-		FkID_CountryAndRegion			CHAR(7)					NOT NULL,
 		FkID_Salary				CHAR(5)					NOT NULL,
 		FirstName				VARCHAR(25)				NOT NULL,
 		SecondName				VARCHAR(25)					,
@@ -103,12 +65,15 @@
 		MothersLastName				VARCHAR(25)				NOT NULL,
 		Celphone				VARCHAR(20)				NOT NULL,
 		BirthDate				DATE					NOT NULL,
+		PostalCode				VARCHAR(10)				NOT NULL,
+		Country					VARCHAR(30)				NOT NULL,
+		Region					VARCHAR(30)				NOT NULL,
+		City					VARCHAR(30)				NOT NULL,
 		EmployeeAddress				VARCHAR(80)				NOT NULL,
 		Photo					IMAGE						,
 
 		PRIMARY KEY				(ID_Employee)					,
 
-		CONSTRAINT fk__CountryRegion FOREIGN KEY (FkID_CountryAndRegion) REFERENCES [dbo].[Country & Region] (ID_CountryAndRegion),
 		CONSTRAINT fk_Salary FOREIGN KEY (FkID_Salary) REFERENCES [dbo].[Salary] (ID_Salary)
 	)
 /* **************************************************************************************************************************************** */
@@ -118,18 +83,20 @@
 	CREATE TABLE [dbo].[Suppliers]
 	(
 		ID_Supplier				CHAR(5)					NOT NULL,
-		FkID_CountryAndRegion			CHAR(7)					NOT NULL,
 		CompanyName				VARCHAR(25)				NOT NULL,
 		E_mail					VARCHAR(30)				NOT NULL,
 		Celphone				VARCHAR(20)				NOT NULL,
 		HomePage				TEXT						,
+		PostalCode				VARCHAR(10)				NOT NULL,
+		Country					VARCHAR(30)				NOT NULL,
+		Region					VARCHAR(30)				NOT NULL,
+		City					VARCHAR(30)				NOT NULL,
 		SupplierAddress				VARCHAR(80)				NOT NULL,
 		Active					BIT					NOT NULL,
 
 		PRIMARY KEY				(ID_Supplier)					,
 
-		CONSTRAINT chk_ActiveSupplier CHECK (Active = 1 OR Active = 0 OR Active = 'True' OR Active = 'False'),
-		CONSTRAINT fk___CountryRegion FOREIGN KEY (FkID_CountryAndRegion) REFERENCES [dbo].[Country & Region] (ID_CountryAndRegion)
+		CONSTRAINT chk_ActiveSupplier CHECK (Active = 1 OR Active = 0 OR Active = 'True' OR Active = 'False')
 	)
 /* **************************************************************************************************************************************** */
 
