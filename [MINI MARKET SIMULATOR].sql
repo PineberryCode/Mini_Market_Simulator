@@ -170,7 +170,7 @@
 	(
 		ID_Quantities				INT IDENTITY				NOT NULL,
 		FkID_Measurement			INT					NOT NULL,
-		MeasurQuantities			INT					NOT NULL,
+		MeasurQuantities			FLOAT					NOT NULL,
 
 		PRIMARY KEY				(ID_Quantities)					,
 
