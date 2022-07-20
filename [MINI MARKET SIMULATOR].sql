@@ -115,7 +115,7 @@
 /* ****************************************************************************************************** */
 	CREATE TABLE [dbo].[Presentation]
 	(
-		ID_Presentation				CHAR(5)					NOT NULL,
+		ID_Presentation				INT IDENTITY				NOT NULL,
 		Contents				VARCHAR(20)				NOT NULL,
 
 		PRIMARY KEY				(ID_Presentation)
@@ -153,7 +153,7 @@
 	(
 		ID_Product				CHAR(5)					NOT NULL,
 		FkID_Category				CHAR(5)					NOT NULL,
-		FkID_Presentation			CHAR(5)					NOT NULL,
+		FkID_Presentation			INT					NOT NULL,
 		FkID_Quantities				INT					NOT NULL,
 		FkID_Supplier				CHAR(5)					NOT NULL,
 		ProductName				VARCHAR(25)				NOT NULL,
