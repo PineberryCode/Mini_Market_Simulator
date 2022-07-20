@@ -51,7 +51,6 @@
 		FkPostal_COD				CHAR(5)					NOT NULL,
 		FkID_City				CHAR(5)					NOT NULL,
 		Distrit					VARCHAR(50)				NOT NULL,
-		Address					VARCHAR(80)				NOT NULL,
 
 		PRIMARY KEY				(ID_CountryAndRegion)				,
 
