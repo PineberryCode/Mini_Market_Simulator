@@ -70,6 +70,7 @@
 		LastName				VARCHAR(25)				NOT NULL,
 		MothersLastName				VARCHAR(25)				NOT NULL,
 		Celphone				VARCHAR(20)				NOT NULL,
+		CustomerAddress				VARCHAR(80)				NOT NULL,
 
 		PRIMARY KEY				(IdentityCarnet)				,
 
@@ -102,6 +103,7 @@
 		MothersLastName				VARCHAR(25)				NOT NULL,
 		Celphone				VARCHAR(20)				NOT NULL,
 		BirthDate				DATE					NOT NULL,
+		EmployeeAddress				VARCHAR(80)				NOT NULL,
 		Photo					IMAGE						,
 
 		PRIMARY KEY				(ID_Employee)					,
@@ -121,6 +123,7 @@
 		E_mail					VARCHAR(30)				NOT NULL,
 		Celphone				VARCHAR(20)				NOT NULL,
 		HomePage				TEXT						,
+		SupplierAddress				VARCHAR(80)				NOT NULL,
 		Active					BIT					NOT NULL,
 
 		PRIMARY KEY				(ID_Supplier)					,
