@@ -1,5 +1,5 @@
 -- ================================================================================================================ --
-/*										[Mehotd Customer's Pay]														*/
+/*						[Mehotd Customer's Pay]					            */
 -- ================================================================================================================ --
 	INSERT INTO [dbo].[Method Customer's Pay] VALUES ('Cash')
 	INSERT INTO [dbo].[Method Customer's Pay] VALUES ('Debit')
@@ -8,7 +8,7 @@
 
 
 -- ================================================================================================================ --
-/*										[INSERTION TO TABLE PRESENTATION]											*/
+/*					[INSERTION TO TABLE PRESENTATION]			            	    */
 -- ================================================================================================================ --
 	INSERT INTO [dbo].[Presentation] VALUES ('Tin')
 	INSERT INTO [dbo].[Presentation] VALUES ('Bottle')
@@ -19,7 +19,7 @@
 
 
 -- ================================================================================================================ --
-/*										[INSERTION TO TABLE CATEGORY PRODUCTS]										*/
+/*					[INSERTION TO TABLE CATEGORY PRODUCTS]				            */
 -- ================================================================================================================ --
 	INSERT INTO [dbo].[Category Products] VALUES ('CAP01','Dairy products')
 	INSERT INTO [dbo].[Category Products] VALUES ('CAP02','Meats')
@@ -33,7 +33,7 @@
 
 
 -- ================================================================================================================ --
-/*									[INSERTION TO TABLE MEASUREMENT QUANTITIES]										*/
+/*					[INSERTION TO TABLE MEASUREMENT QUANTITIES]				    */
 -- ================================================================================================================ --
 	INSERT INTO [dbo].[Measurement Quantities] VALUES ('L')
 	INSERT INTO [dbo].[Measurement Quantities] VALUES ('ml')
@@ -43,7 +43,7 @@
 
 
 -- ================================================================================================================ --
-/*										[INSERTION TO TABLE QUANTITIES]												*/
+/*						[INSERTION TO TABLE QUANTITIES]					    */
 -- ================================================================================================================ --
 	INSERT INTO [dbo].[Quantities] VALUES (1,1)
 	INSERT INTO [dbo].[Quantities] VALUES (1,1.5)
@@ -65,7 +65,7 @@
 
 
 -- ================================================================================================================ --
-/*											[INSERTION TO TABLE SALARY]												*/
+/*						[INSERTION TO TABLE SALARY]					    */
 -- ================================================================================================================ --
 	INSERT INTO [dbo].[Salary] VALUES ('CASHI','Cashier',1200)
 	INSERT INTO [dbo].[Salary] VALUES ('CSUPP','Customer Support',1800)
