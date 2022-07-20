@@ -95,7 +95,7 @@
 
 CREATE PROCEDURE [dbo].[SP Insert Employee Data]
 (
-	@ID_Employee					CHAR(10)		OUTPUT	  	,
+	@ID_Employee					CHAR(5)			OUTPUT	  	,
 	@FkID_Salary					CHAR(5)				  	,
 	@FirstName					VARCHAR(25)			  	,
 	@SecondName					VARCHAR(25)			  	,
@@ -174,7 +174,7 @@ END
 -- ================================================================================================================================================================= --
 CREATE PROCEDURE [dbo].[SP Update Employee]
 (
-	@ID_Employee					CHAR(10)		OUTPUT	  	,
+	@ID_Employee					CHAR(5)			OUTPUT	  	,
 	@FkID_Salary					CHAR(5)				  	,
 	@FirstName					VARCHAR(25)			 	,
 	@SecondName					VARCHAR(25)			  	,
