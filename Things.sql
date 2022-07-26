@@ -119,7 +119,7 @@ BEGIN
 
 			IF NOT EXISTS (SELECT * FROM [dbo].[Employee])
 			BEGIN
-				DECLARE @Number INT = 1
+				DECLARE @Number INT = 100
 
 				SET @ID_Employee = CONCAT(CAST('E' AS CHAR(1)), CAST('M' AS CHAR(1)), CAST(@Number AS CHAR(3)))
 
