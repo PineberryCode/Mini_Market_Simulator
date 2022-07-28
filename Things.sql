@@ -152,7 +152,7 @@ BEGIN
 					DECLARE @SecondCount INT = (SELECT COUNT(ID_Employee) FROM [dbo].[Employee])
 
 					UPDATE [dbo].[Eagle Eye]
-					SET		ColumnValues		=		@SecondCount
+					SET	ColumnValues		=		@SecondCount
 					WHERE	NameParameters		=		'Employees'
 
 					SELECT CONCAT(@levelState, ':') AS [Level State], 'Last successful insertion of employee data' AS [ Message ]
