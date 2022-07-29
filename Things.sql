@@ -558,7 +558,7 @@ BEGIN
 				SELECT 'First successful insertion sell data' AS [Insertion Message]
 
 				UPDATE [dbo].[Products]
-				SET 		UnitsInStock			=		UnitsInStock 		- 1
+				SET 		UnitsInStock			=		UnitsInStock 		-	@QuantityProducts
 				WHERE 		ID_Product			=		@FkID_Product
 
 				SELECT 'Stock product has updated' AS [Product Stock update message]
@@ -581,7 +581,7 @@ BEGIN
 					SELECT 'Last successful insertion sell data' AS [Insertion Message]
 
 					UPDATE [dbo].[Products]
-					SET 		UnitsInStock			=		UnitsInStock 		- 1
+					SET 		UnitsInStock			=		UnitsInStock 		-	@QuantityProducts
 					WHERE 		ID_Product			=		@FkID_Product
 
 					SELECT 'Stock product has updated' AS [Product Stock update message]
