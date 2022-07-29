@@ -514,3 +514,81 @@ BEGIN
 	END CATCH
 END
 -- ================================================================================================================================================================= --
+
+
+-- ================================================================================================================================================================= --
+/*									SELL STORED PROCEDURES			  						     */
+-- ================================================================================================================================================================= --
+
+CREATE PROCEDURE [SP Insert Sell Data]
+(
+	@SellCode					CHAR(20)		OUTPUT		,
+	@FkID_Pay					INT					,
+	@FkIdentityCarnet				INT					,
+	@FkID_Employee					CHAR(5)					,
+	@FkID_Product					CHAR(5)					,
+	@RegistrationDate				DATETIME		OUTPUT		,
+	@QuantityProducts				INT					,
+	@Discount					SMALLINT			
+)
+AS
+BEGIN
+	BEGIN TRY
+		SET DATEFORMAT DMY
+		BEGIN TRANSACTION
+
+			SET @RegistrationDate = GETDATE()
+
+			IF NOT EXISTS (SELECT * FROM [dbo].[Sell])
+			BEGIN
+				DECLARE @Number INT = 1000000000000000
+				SET @SellCode = CONCAT(CAST('N' AS CHAR(1)), CAST('SELL' AS CHAR(4)), CAST(@Number AS CHAR(15)))
+
+				INSERT INTO [dbo].[Sell] (SellCode, FkID_Pay, FkIdentityCarnet, FkID_Employee, FkID_Product, RegistrationDate, QuantityProducts, Discount)
+				SELECT @SellCode, @FkID_Pay, @FkIdentityCarnet, @FkID_Employee, @FkID_Product, @RegistrationDate, @QuantityProducts, @Discount
+
+				SELECT 'First successful insertion sell data' AS [Insertion Message]
+
+				UPDATE [dbo].[Products]
+				SET 		UnitsInStock			=		UnitsInStock 		- 1
+				WHERE 		ID_Product			=		@FkID_Product
+
+				SELECT 'Stock product has updated' AS [Product Stock update message]
+			END
+			ELSE
+			BEGIN
+				IF EXISTS (SELECT * FROM [dbo].[Sell])
+				BEGIN
+					DECLARE @Iterate INT = 1
+
+					DECLARE @Kidnapper INT = (SELECT CAST(SUBSTRING(MAX(SellCode),6,15) AS INT) FROM [dbo].[Sell])
+
+					SET @Kidnapper = @Iterate + @Kidnapper
+
+					SET @SellCode = CONCAT(CAST('N' AS CHAR(1)), CAST('SELL' AS CHAR(4)), CAST(@Kidnapper AS CHAR(15)))
+
+					INSERT INTO [dbo].[Sell] (SellCode, FkID_Pay, FkIdentityCarnet, FkID_Employee, FkID_Product, RegistrationDate, QuantityProducts, Discount)
+					SELECT @SellCode, @FkID_Pay, @FkIdentityCarnet, @FkID_Employee, @FkID_Product, @RegistrationDate, @QuantityProducts, @Discount
+
+					SELECT 'Last successful insertion sell data' AS [Insertion Message]
+
+					UPDATE [dbo].[Products]
+					SET 		UnitsInStock			=		UnitsInStock 		- 1
+					WHERE 		ID_Product			=		@FkID_Product
+
+					SELECT 'Stock product has updated' AS [Product Stock update message]
+				END
+			END
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		SELECT		ERROR_LINE()		AS [ERROR LINE],
+				ERROR_MESSAGE()		AS [ERROR MESSAGE],
+				ERROR_NUMBER()		AS [ERROR NUMBER],
+				ERROR_PROCEDURE()	AS [ERROR PROCEDURE],
+				ERROR_SEVERITY()	AS [ERROR SEVERITY],
+				ERROR_STATE()		AS [ERROR STATE]
+	END CATCH
+END
+-- ================================================================================================================================================================= --
