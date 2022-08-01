@@ -171,30 +171,6 @@
 /* *************************************************************************************************************************** */
 
 
-/* *********************************************************************************************************************************************************************** */
-	CREATE TABLE [dbo].[Shops]
-	(
-		ID_Shops				CHAR(20)				NOT NULL,
-		FkID_Product				CHAR(5)					NOT NULL,
-		FkID_Supplier				CHAR(5)					NOT NULL,
-		FkID_Employee				CHAR(5)					NOT NULL,
-		OrderDate				DATETIME				NOT NULL,
-		Deadline				DATETIME				NOT NULL,
-		UnitPrice				MONEY					NOT NULL,
-		Discount				REAL					NOT NULL,
-		Quantity				INT					NOT NULL,
-		MerchandiseArrived			BIT					NOT NULL,
-
-		PRIMARY KEY				(ID_Shops)					,
-
-		CONSTRAINT chk_MerchandiseArrived CHECK (MerchandiseArrived = 1 OR MerchandiseArrived = 0 OR MerchandiseArrived = 'True' OR MerchandiseArrived = 'False'),
-		CONSTRAINT fk__Products FOREIGN KEY (FkID_Product) REFERENCES [dbo].[Products] (ID_Product),
-		CONSTRAINT fk_Supplier FOREIGN KEY (FkID_Supplier) REFERENCES [dbo].[Suppliers] (ID_Supplier),
-		CONSTRAINT fk_Employees FOREIGN KEY (FkID_Employee) REFERENCES [dbo].[Employee] (ID_Employee)
-	)
-/* *********************************************************************************************************************************************************************** */
-
-
 /* *********************************************************************************************************************** */
 	CREATE TABLE [dbo].[Sell]
 	(
