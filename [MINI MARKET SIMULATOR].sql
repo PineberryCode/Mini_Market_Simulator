@@ -1,6 +1,6 @@
 /* -- =================================================================== --
 	*|	Database	:	[MINI MARKET SIMULATOR]
-	*|	BirthDate	:	July, 4th, 2022
+	*|	BirthDate	:	July 4th, 2022
 	*|	By		:	PineberryCode	||	MINDLUNNY
 -- =================================================================== -- */
 	CREATE DATABASE [MINI MARKET SIMULATOR]
