@@ -591,12 +591,12 @@ BEGIN
 	END TRY
 	BEGIN CATCH
 		ROLLBACK TRANSACTION
-		SELECT		ERROR_LINE()		AS [ERROR LINE],
-				ERROR_MESSAGE()		AS [ERROR MESSAGE],
-				ERROR_NUMBER()		AS [ERROR NUMBER],
-				ERROR_PROCEDURE()	AS [ERROR PROCEDURE],
-				ERROR_SEVERITY()	AS [ERROR SEVERITY],
-				ERROR_STATE()		AS [ERROR STATE]
+		SELECT		ERROR_LINE()		AS 	[ERROR LINE],
+				ERROR_MESSAGE()		AS 	[ERROR MESSAGE],
+				ERROR_NUMBER()		AS 	[ERROR NUMBER],
+				ERROR_PROCEDURE()	AS 	[ERROR PROCEDURE],
+				ERROR_SEVERITY()	AS 	[ERROR SEVERITY],
+				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
 -- ================================================================================================================================================================= --
