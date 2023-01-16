@@ -89,9 +89,9 @@
 -- ============================================================================== --
 
 
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 /*									EMPLOYEE STORED PROCEDURES					      			     */
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
 CREATE PROCEDURE [dbo].[SP Insert Employee Data]
 (
@@ -123,8 +123,11 @@ BEGIN
 
 				SET @ID_Employee = CONCAT(CAST('E' AS CHAR(1)), CAST('M' AS CHAR(1)), CAST(@Number AS CHAR(3)))
 
-				INSERT INTO [dbo].[Employee] (ID_Employee, FkID_Salary, FirstName, SecondName, LastName, MothersLastName, Celphone, BirthDate, PostalCode, Country, Region, City, EmployeeAddress, Photo)
-				SELECT @ID_Employee, @FkID_Salary, @FirstName, @SecondName, @LastName, @MothersLastName, @Celphone, @BirthDate, @PostalCode, @Country, @Region, @City, @EmployeeAddress, @Photo
+				INSERT INTO [dbo].[Employee] (ID_Employee, FkID_Salary, FirstName, SecondName, LastName, MothersLastName, Celphone, 
+				BirthDate, PostalCode, Country, Region, City, EmployeeAddress, Photo)
+				
+				SELECT @ID_Employee, @FkID_Salary, @FirstName, @SecondName, @LastName, @MothersLastName, @Celphone, @BirthDate, 
+				@PostalCode, @Country, @Region, @City, @EmployeeAddress, @Photo
 
 				DECLARE @Count INT = (SELECT COUNT(ID_Employee) FROM [dbo].[Employee])
 			
@@ -146,8 +149,11 @@ BEGIN
 
 					SET @ID_Employee = CONCAT(CAST('E' AS CHAR(1)), CAST('M' AS CHAR(1)), CAST(@Kidnapper AS CHAR(3)))
 
-					INSERT INTO [dbo].[Employee] (ID_Employee, FkID_Salary, FirstName, SecondName, LastName, MothersLastName, Celphone, BirthDate, PostalCode, Country, Region, City, EmployeeAddress, Photo)
-					SELECT @ID_Employee, @FkID_Salary, @FirstName, @SecondName, @LastName, @MothersLastName, @Celphone, @BirthDate, @PostalCode, @Country, @Region, @City, @EmployeeAddress, @Photo
+					INSERT INTO [dbo].[Employee] (ID_Employee, FkID_Salary, FirstName, SecondName, LastName, MothersLastName, Celphone, 
+					BirthDate, PostalCode, Country, Region, City, EmployeeAddress, Photo)
+					
+					SELECT @ID_Employee, @FkID_Salary, @FirstName, @SecondName, @LastName, @MothersLastName, @Celphone, 
+					@BirthDate, @PostalCode, @Country, @Region, @City, @EmployeeAddress, @Photo
 				
 					DECLARE @SecondCount INT = (SELECT COUNT(ID_Employee) FROM [dbo].[Employee])
 
@@ -170,9 +176,9 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Update Employee]
 (
 	@ID_Employee					CHAR(5)			OUTPUT	  	,
@@ -235,12 +241,12 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
 
--- ================================================================================================================================================================= --
-/*									CUSTOMER STORED PROCEDURES			  					     */
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
+/*									CUSTOMER STORED PROCEDURES			  			     	  */
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Update Customer]
 (
 	@IdentityCarnet					INT					,
@@ -297,9 +303,9 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Insert Customer Data]
 (
 	@IdentityCarnet					INT					,
@@ -318,8 +324,11 @@ AS
 BEGIN
 	BEGIN TRY
 
-		INSERT INTO [dbo].[Customer] (IdentityCarnet, FirstName, SecondName, LastName, MothersLastName, Celphone, PostalCode, Country, Region, City, CustomerAddress)
-		SELECT @IdentityCarnet, @FirstName, @SecondName, @LastName, @MothersLastName, @Celphone, @PostalCode, @Country, @Region, @City, @CustomerAddress
+		INSERT INTO [dbo].[Customer] (IdentityCarnet, FirstName, SecondName, LastName, MothersLastName, Celphone, PostalCode, Country, 
+		Region, City, CustomerAddress)
+		
+		SELECT @IdentityCarnet, @FirstName, @SecondName, @LastName, @MothersLastName, @Celphone, @PostalCode, @Country, 
+		@Region, @City, @CustomerAddress
 
 		SELECT 'Successful insertion customer data' AS [ Message ]
 	END TRY
@@ -332,12 +341,12 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
 
--- ================================================================================================================================================================= --
-/*								SUPPLIER STORED PROCEDURES			  						     */
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
+/*								SUPPLIER STORED PROCEDURES			  				     	  */
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Insert Suppliers Data]
 (
 	@ID_Supplier					CHAR(5) 		OUTPUT		,
@@ -357,7 +366,9 @@ BEGIN
 	BEGIN TRY
 		SET @ID_Supplier = CONCAT(SUBSTRING(@Country, 1,2), SUBSTRING(@CompanyName, 1, 3))
 
-		INSERT INTO [dbo].[Suppliers] (ID_Supplier, CompanyName, E_mail, Celphone, HomePage, PostalCode, Country, Region, City, SupplierAddress, Active)
+		INSERT INTO [dbo].[Suppliers] (ID_Supplier, CompanyName, E_mail, Celphone, HomePage, PostalCode, Country, Region, City, 
+		SupplierAddress, Active)
+		
 		SELECT @ID_Supplier, @CompanyName, @E_mail, @Celphone, @HomePage, @PostalCode, @Country, @Region, @City, @SupplierAddress, @Active
 
 		SELECT 'Successful insertion suppliers data' AS [ Message ]
@@ -372,9 +383,9 @@ BEGIN
 	END CATCH
 END
 
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Update Supplier Data]
 (
 	@ID_Supplier					CHAR(5)					,
@@ -429,12 +440,12 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
 
--- ================================================================================================================================================================= --
-/*									PRODUCT STORED PROCEDURES			  					     */
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
+/*									PRODUCT STORED PROCEDURES			  				  */
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Insert Product Data]
 (
 	@ID_Product					CHAR(5) 		OUTPUT		,
@@ -452,7 +463,9 @@ BEGIN
 	BEGIN TRY
 		SET @ID_Product = CONCAT(SUBSTRING(@Mark,1,2), SUBSTRING(@ProductName,1,3))
 
-		INSERT INTO [dbo].[Products] (ID_Product, FkID_Category, FkID_Presentation, FkID_Quantities, FkID_Supplier, ProductName, Mark, UnitPrice, UnitsInStock)
+		INSERT INTO [dbo].[Products] (ID_Product, FkID_Category, FkID_Presentation, FkID_Quantities, FkID_Supplier, ProductName, 
+		Mark, UnitPrice, UnitsInStock)
+		
 		SELECT @ID_Product, @FkID_Category, @FkID_Presentation, @FkID_Quantities, @FkID_Supplier, @ProductName, @Mark, @UnitPrice, @UnitsInStock
 
 		SELECT 'Successful insertion product data' AS [ Message ]
@@ -466,9 +479,9 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 CREATE PROCEDURE [dbo].[SP Update Product Data]
 (
 	@ID_Product					CHAR(5)					,
@@ -521,12 +534,12 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
 
 
--- ================================================================================================================================================================= --
-/*									SELL STORED PROCEDURES			  						     */
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
+/*									SELL STORED PROCEDURES			  			      		  */
+-- ====================================================================================================================================================== --
 
 CREATE PROCEDURE [SP Insert Sell Data]
 (
@@ -552,8 +565,11 @@ BEGIN
 				DECLARE @Number INT = 1000000000000000
 				SET @SellCode = CONCAT(CAST('N' AS CHAR(1)), CAST('SELL' AS CHAR(4)), CAST(@Number AS CHAR(15)))
 
-				INSERT INTO [dbo].[Sell] (SellCode, FkID_Pay, FkIdentityCarnet, FkID_Employee, FkID_Product, RegistrationDate, QuantityProducts, Discount)
-				SELECT @SellCode, @FkID_Pay, @FkIdentityCarnet, @FkID_Employee, @FkID_Product, @RegistrationDate, @QuantityProducts, @Discount
+				INSERT INTO [dbo].[Sell] (SellCode, FkID_Pay, FkIdentityCarnet, FkID_Employee, FkID_Product, RegistrationDate, 
+				QuantityProducts, Discount)
+				
+				SELECT @SellCode, @FkID_Pay, @FkIdentityCarnet, @FkID_Employee, @FkID_Product, @RegistrationDate, 
+				@QuantityProducts, @Discount
 
 				SELECT 'First successful insertion sell data' AS [Insertion Message]
 
@@ -575,8 +591,11 @@ BEGIN
 
 					SET @SellCode = CONCAT(CAST('N' AS CHAR(1)), CAST('SELL' AS CHAR(4)), CAST(@Kidnapper AS CHAR(15)))
 
-					INSERT INTO [dbo].[Sell] (SellCode, FkID_Pay, FkIdentityCarnet, FkID_Employee, FkID_Product, RegistrationDate, QuantityProducts, Discount)
-					SELECT @SellCode, @FkID_Pay, @FkIdentityCarnet, @FkID_Employee, @FkID_Product, @RegistrationDate, @QuantityProducts, @Discount
+					INSERT INTO [dbo].[Sell] (SellCode, FkID_Pay, FkIdentityCarnet, FkID_Employee, FkID_Product, RegistrationDate, 
+					QuantityProducts, Discount)
+					
+					SELECT @SellCode, @FkID_Pay, @FkIdentityCarnet, @FkID_Employee, @FkID_Product, @RegistrationDate, 
+					@QuantityProducts, @Discount
 
 					SELECT 'Last successful insertion sell data' AS [Insertion Message]
 
@@ -599,4 +618,4 @@ BEGIN
 				ERROR_STATE()		AS 	[ERROR STATE]
 	END CATCH
 END
--- ================================================================================================================================================================= --
+-- ====================================================================================================================================================== --
